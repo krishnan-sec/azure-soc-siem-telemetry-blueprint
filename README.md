@@ -1,10 +1,10 @@
 # Azure SOC / SIEM Telemetry Blueprint
 
-This repository defines the **security telemetry required** for an **external SOC and SIEM** to perform **credible monitoring, detection, investigation, and incident response** in Microsoft Azure.
+This repository defines the security telemetry required for an external SOC and SIEM to perform credible monitoring, detection, investigation, and incident response in Microsoft Azure.
 
-It is written from the perspective of **security architecture and operational reality**, not from tooling documentation or vendor guidance.
+It is written from the perspective of security architecture and operational reality, not from tooling documentation or vendor guidance.
 
-The focus is not on enabling logs, but on ensuring that when an incident occurs, the SOC can **reconstruct what happened with confidence**.
+The focus is not on enabling logs, but on ensuring that when an incident occurs, the SOC can reconstruct what happened with confidence.
 
 ---
 
@@ -19,7 +19,7 @@ In many Azure environments:
 - SOCs receive alerts without investigative context
 
 These conditions do not usually surface during design reviews.  
-They surface **during incidents**, when attribution is unclear, timelines are incomplete, and containment decisions are delayed.
+They surface during incidents, when attribution is unclear, timelines are incomplete, and containment decisions are delayed.
 
 This repository exists to prevent that outcome.
 
@@ -27,7 +27,7 @@ This repository exists to prevent that outcome.
 
 ## Core premise
 
-Security monitoring in Azure must be designed around **planes of control**, not individual services.
+Security monitoring in Azure must be designed around planes of control, not individual services.
 
 Each plane answers a different class of investigative question:
 
@@ -76,7 +76,9 @@ Where these assumptions do not hold, guidance may need adaptation.
 
 ---
 
-## Design principles used throughout this repo
+## Design principles
+
+The guidance in this repository follows these principles:
 
 1. **Investigation over detection**  
    Detection without context increases mean-time-to-respond.
@@ -85,104 +87,95 @@ Where these assumptions do not hold, guidance may need adaptation.
    Most Azure incidents leverage legitimate identities, not exploits.
 
 3. **Telemetry is a security control**  
-   Missing logs represent an explicit risk acceptance.
+   Missing logs represent explicit risk acceptance.
 
 4. **Validation is mandatory**  
-   Enabled logging without verification is a false sense of security.
+   Enabled logging without verification creates false confidence.
 
 5. **Least privilege applies to SOC access**  
-   Visibility should not require write access.
+   Visibility should not require the ability to change the environment.
 
 ---
-
 ## Repository structure
 
 ### `docs/`
-Authoritative architectural guidance and rationale.
+
+Authoritative architectural guidance.  
+
+These documents define *why* telemetry is required, *what* must be collected, *how* it is transported, *how* it is made usable, and *how* it is validated.
 
 - `00-intent-and-scope.md`  
-  Purpose, assumptions, and definition of coverage.
+  Defines purpose, assumptions, and boundaries.
 
 - `01-planes-and-control-points.md`  
-  Azure planes of control and their investigative role.
+  Establishes the plane-based security model used throughout the repository.
 
 - `02-required-telemetry.md`  
-  **Core document** defining non-negotiable telemetry per plane.
+  Defines non-negotiable telemetry required for credible investigation.
 
 - `03-collection-and-forwarding-architectures.md`  
-  Log routing patterns and their operational trade-offs.
+  Describes telemetry transport patterns and their operational trade-offs.
 
 - `04-normalization-and-field-mapping.md`  
-  How telemetry must be structured for effective SOC use.
+  Defines how telemetry must be structured for SOC usability and correlation.
 
 - `05-validation-tests-and-acceptance-criteria.md`  
-  Tests that prove telemetry is present, timely, and usable.
+  Establishes how telemetry is proven to be present, timely, and usable.
 
 - `06-operating-model-rbac-and-access.md`  
-  SOC access patterns, separation of duties, and escalation models.
+  Defines SOC access boundaries, separation of duties, and escalation models.
 
-- `07-common-failures-and-risk-acceptance.md`  
-  Observed failure modes and how they manifest during incidents.
-
-- `08-reference-service-matrix.md`  
-  Service-by-service telemetry requirements and validation guidance.
+These documents are intended to be read in order.
 
 ---
 
 ### `checklists/`
-Operational artifacts intended for repeated use.
 
-- Baseline telemetry checklist
-- Subscription onboarding checklist
-- SOC readiness checklist
-- Periodic validation checklist
+Operational artifacts intended for repeated use once the architecture in `docs/` is established.
 
-These are designed to **enforce standards**, not replace architecture.
+- Baseline telemetry checklist  
+  Used to confirm architectural compliance with required telemetry.
 
----
+- Subscription onboarding checklist  
+  Used when onboarding new subscriptions or landing zones.
 
-### `diagrams/`
-Mermaid diagrams illustrating:
-- Azure planes of control
-- Telemetry data flows
-- SOC onboarding lifecycle
+- SOC readiness checklist  
+  Used to confirm the SOC can investigate without ad-hoc access changes.
 
-Diagrams are explanatory, not decorative.
+- Periodic validation checklist  
+  Used to detect drift and silent telemetry failure over time.
 
----
-
-### `templates/`
-Reusable templates for extending the repo:
-- Per-service documentation
-- Validation runbooks
-- SOC onboarding artifacts
+These checklists are designed to enforce standards, not replace architecture.  
+They intentionally contain no explanatory content and must map directly to the documents in `docs/`.
 
 ---
 
 ## How this repository should be used
 
-Recommended approach:
+This repository is intended to be used as:
 
-1. **Architecture teams** use this repo to define telemetry standards
-2. **Platform teams** implement logging accordingly
-3. **SOC teams** validate ingestion and investigative usability
-4. **Security leadership** uses it to understand risk acceptance
+- a reference architecture for Azure telemetry design
+- a standard for onboarding subscriptions and SOC providers
+- a review artifact during security architecture assessments
+- a defensive justification for logging, retention, and access decisions
 
-This repository is most effective when treated as a **living standard**, not a one-time deliverable.
+It is most effective when treated as a living standard, not a one-time deliverable.
+
 
 ---
 
 ## Final note
 
-If telemetry described in this repository is missing, the organization should assume:
 
-- Increased detection latency
-- Reduced investigation confidence
-- Slower containment
-- Higher operational risk during incidents
+If telemetry defined in this repository is missing, the organization should assume:
 
-This is not a tooling limitation.  
-It is a **design decision**.
+- increased detection latency
+- reduced investigation confidence
+- slower containment
+- higher operational risk during incidents
+
+These outcomes are not tooling failures.
+They are **design decisions**.
 
 ---
 
