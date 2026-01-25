@@ -129,27 +129,6 @@ These documents are intended to be read in order.
 
 ---
 
-### `checklists/`
-
-Operational artifacts intended for repeated use once the architecture in `docs/` is established.
-
-- Baseline telemetry checklist  
-  Used to confirm architectural compliance with required telemetry.
-
-- Subscription onboarding checklist  
-  Used when onboarding new subscriptions or landing zones.
-
-- SOC readiness checklist  
-  Used to confirm the SOC can investigate without ad-hoc access changes.
-
-- Periodic validation checklist  
-  Used to detect drift and silent telemetry failure over time.
-
-These checklists are designed to enforce standards, not replace architecture.  
-They intentionally contain no explanatory content and must map directly to the documents in `docs/`.
-
----
-
 ## How this repository should be used
 
 This repository is intended to be used as:
