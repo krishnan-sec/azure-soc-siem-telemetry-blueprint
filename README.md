@@ -29,6 +29,12 @@ This repository exists to prevent that outcome.
 
 Security monitoring in Azure must be designed around planes of control, not individual services.
 
+<p align="center">
+  <img src="docs/azure-siem-high-level-overview.png" width="900">
+</p>
+
+<p align="center">
+
 Each plane answers a different class of investigative question:
 
 - **Identity plane**: who authenticated, how access was obtained, and under what conditions
