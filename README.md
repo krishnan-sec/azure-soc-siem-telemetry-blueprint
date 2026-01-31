@@ -104,25 +104,25 @@ Authoritative architectural guidance.
 
 These documents define *why* telemetry is required, *what* must be collected, *how* it is transported, *how* it is made usable, and *how* it is validated.
 
-- `00-intent-and-scope.md`  
+- [00 Intent & Scope](docs/00-intent-and-scope.md)  
   Defines purpose, assumptions, and boundaries.
 
-- `01-planes-and-control-points.md`  
+- [01 Planes & Control points](docs/01-planes-and-control-points.md)  
   Establishes the plane-based security model used throughout the repository.
 
-- `02-required-telemetry.md`  
+- [02 Required Telemetry](docs/02-required-telemetry.md)  
   Defines non-negotiable telemetry required for credible investigation.
 
-- `03-collection-and-forwarding-architectures.md`  
+- [03 Collection & Forwarding Architecture](docs/03-collection-and-forwarding-architectures.md)  
   Describes telemetry transport patterns and their operational trade-offs.
 
-- `04-normalization-and-field-mapping.md`  
+- [04 Normalization & Field Mapping](docs/04-normalization-and-field-mapping.md)  
   Defines how telemetry must be structured for SOC usability and correlation.
 
-- `05-validation-tests-and-acceptance-criteria.md`  
+- [05 Validation Tests & Acceptance Criterai](docs/05-validation-tests-and-acceptance-criteria.md)  
   Establishes how telemetry is proven to be present, timely, and usable.
 
-- `06-operating-model-rbac-and-access.md`  
+- [06 Operating Model - RBAC & Access](docs/06-operating-model-rbac-and-access.md)  
   Defines SOC access boundaries, separation of duties, and escalation models.
 
 These documents are intended to be read in order.
